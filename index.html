@@ -52,7 +52,6 @@
             padding: 0 20px;
         }
         
-        /* Header */
         header {
             position: fixed;
             top: 0;
@@ -139,13 +138,13 @@
             color: var(--primary);
         }
         
-        /* Hero Section */
         .hero {
             height: 100vh;
             display: flex;
             align-items: center;
             position: relative;
             overflow: hidden;
+            padding-top: 80px;
         }
         
         .hero-bg {
@@ -186,7 +185,6 @@
             background: linear-gradient(90deg, var(--primary), var(--secondary));
             color: var(--dark);
             text-decoration: none;
-            font-weight: 700;
             border-radius: 30px;
             transition: all 0.3s;
             border: none;
@@ -194,6 +192,7 @@
             font-family: 'Orbitron', sans-serif;
             text-transform: uppercase;
             letter-spacing: 1px;
+            font-weight: 700;
         }
         
         .btn:hover {
@@ -204,8 +203,7 @@
         .btn:disabled {
             opacity: 0.6;
             cursor: not-allowed;
-            transform: none;
-            box-shadow: none;
+            transform: none !important;
         }
         
         .hero-visual {
@@ -218,7 +216,6 @@
             opacity: 0.7;
         }
         
-        /* Features */
         .section-title {
             text-align: center;
             margin-bottom: 60px;
@@ -283,7 +280,6 @@
             color: var(--gray);
         }
         
-        /* Tech Demo */
         .tech-demo {
             padding: 100px 0;
         }
@@ -323,7 +319,6 @@
             color: var(--gray);
         }
         
-        /* Stats */
         .stats {
             padding: 80px 0;
             background-color: var(--dark);
@@ -346,7 +341,6 @@
             font-weight: 600;
         }
         
-        /* Contact */
         .contact {
             padding: 100px 0;
         }
@@ -386,7 +380,6 @@
             border-color: var(--primary);
         }
         
-        /* Loading Spinner */
         .spinner {
             display: inline-block;
             width: 20px;
@@ -402,7 +395,6 @@
             to { transform: rotate(360deg); }
         }
         
-        /* Toast Notification */
         .toast {
             position: fixed;
             top: 100px;
@@ -444,7 +436,6 @@
             font-size: 20px;
         }
         
-        /* Footer */
         footer {
             padding: 60px 0 30px;
             background-color: var(--darker);
@@ -515,7 +506,6 @@
             border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
         
-        /* Responsive */
         @media (max-width: 992px) {
             .hero h1 {
                 font-size: 2.8rem;
@@ -573,7 +563,6 @@
             }
         }
         
-        /* Animations */
         @keyframes float {
             0%, 100% { transform: translateY(0); }
             50% { transform: translateY(-20px); }
@@ -601,7 +590,6 @@
             animation: glow 2s ease-in-out infinite;
         }
         
-        /* Particle animation */
         .particles {
             position: absolute;
             top: 0;
@@ -688,7 +676,7 @@
             <div class="features-grid">
                 <div class="feature-card">
                     <div class="feature-icon">
-                        <i class="fas fa-quantum-computer"></i>
+                        <i class="fas fa-microchip"></i>
                     </div>
                     <h3>Computação Quântica</h3>
                     <p>Acesso remoto a processadores quânticos reais para resolver problemas complexos em minutos, não anos.</p>
@@ -696,7 +684,7 @@
                 
                 <div class="feature-card">
                     <div class="feature-icon">
-                        <i class="fas fa-brain-circuit"></i>
+                        <i class="fas fa-brain"></i>
                     </div>
                     <h3>IA Neurosináptica</h3>
                     <p>Redes neurais que imitam o cérebro humano, aprendendo e se adaptando de forma orgânica.</p>
@@ -852,19 +840,33 @@
             </div>
             
             <div class="copyright">
-                &copy; 2023 QuantumTech. Todos os direitos reservados. | Desenvolvido com <i class="fas fa-heart" style="color: var(--danger);"></i> e tecnologia quântica.
+                &copy; 2023 QuantumTech. Todos os direitos reservados. | Hospedado no Render
             </div>
         </div>
     </footer>
 
     <script>
-        // Inicializar EmailJS com minhas credenciais
-        // SUBSTITUA ESTES VALORES PELAS SUAS PRÓPRIAS CREDENCIAIS DO EMAILJS
-        emailjs.init("jiQ-dagzsLIIF9Gge"); // Substitua pela sua chave pública do EmailJS
+        // ============================================
+        // CONFIGURAÇÃO DO EMAILJS - SUBSTITUA OS VALORES!
+        // ============================================
+        // 1. Vá para https://www.emailjs.com
+        // 2. Crie uma conta gratuita
+        // 3. Obtenha suas credenciais:
+        //    - Public Key (Dashboard → Account)
+        //    - Service ID (Email Services)
+        //    - Template ID (Email Templates)
+        // 4. Substitua abaixo:
         
-        // Configurações do EmailJS
-        const SERVICE_ID = "service_xtu2z0d"; // Substitua pelo seu Service ID
-        const TEMPLATE_ID = "template_49b4cha"; // Substitua pelo seu Template ID
+        const EMAILJS_PUBLIC_KEY = "jiQ-dagzsLIIF9Gge";
+        const EMAILJS_SERVICE_ID = "service_xtu2z0d";
+        const EMAILJS_TEMPLATE_ID = "template_49b4cha";
+        
+        // Inicializar EmailJS
+        emailjs.init(EMAILJS_PUBLIC_KEY);
+        
+        // ============================================
+        // FUNCIONALIDADES DO SITE
+        // ============================================
         
         // Menu Toggle
         const menuToggle = document.getElementById('menuToggle');
@@ -977,7 +979,7 @@
         // Animated counters
         function animateCounter(elementId, finalValue, duration = 2000) {
             const element = document.getElementById(elementId);
-            const increment = finalValue / (duration / 16); // 60fps
+            const increment = finalValue / (duration / 16);
             let currentValue = 0;
             
             const timer = setInterval(() => {
@@ -1020,36 +1022,12 @@
                     bar.style.width = "0%";
                     bar.style.transition = "width 0.5s, background-color 0.5s";
                     bar.style.borderRadius = "3px";
-                    bar.style.position = "relative";
-                    bar.style.overflow = "hidden";
-                    
-                    // Add quantum effect (pulsing overlay)
-                    const quantumEffect = document.createElement('div');
-                    quantumEffect.style.position = "absolute";
-                    quantumEffect.style.top = "0";
-                    quantumEffect.style.left = "0";
-                    quantumEffect.style.width = "100%";
-                    quantumEffect.style.height = "100%";
-                    quantumEffect.style.background = "linear-gradient(90deg, transparent, rgba(0, 243, 255, 0.3), transparent)";
-                    quantumEffect.style.animation = `quantumPulse ${Math.random() * 2 + 1}s infinite`;
-                    bar.appendChild(quantumEffect);
-                    
                     dataVisualization.appendChild(bar);
                 }
                 
-                // Add CSS for quantum pulse animation
-                const style = document.createElement('style');
-                style.textContent = `
-                    @keyframes quantumPulse {
-                        0% { transform: translateX(-100%); }
-                        100% { transform: translateX(100%); }
-                    }
-                `;
-                document.head.appendChild(style);
-                
                 // Update stats
                 simulationInterval = setInterval(() => {
-                    // Update visualization bars with quantum randomness
+                    // Update visualization bars
                     const bars = dataVisualization.querySelectorAll('div');
                     bars.forEach(bar => {
                         const randomWidth = Math.floor(Math.random() * 100);
@@ -1057,13 +1035,13 @@
                         
                         // Quantum state colors
                         if (randomWidth > 85) {
-                            bar.style.backgroundColor = "var(--success)"; // |1> state
+                            bar.style.backgroundColor = "var(--success)";
                         } else if (randomWidth > 60) {
-                            bar.style.backgroundColor = "var(--primary)"; // Superposition
+                            bar.style.backgroundColor = "var(--primary)";
                         } else if (randomWidth > 30) {
-                            bar.style.backgroundColor = "var(--secondary)"; // |0> state
+                            bar.style.backgroundColor = "var(--secondary)";
                         } else {
-                            bar.style.backgroundColor = "var(--warning)"; // Entanglement
+                            bar.style.backgroundColor = "var(--warning)";
                         }
                     });
                     
@@ -1112,8 +1090,7 @@
                 phone: document.getElementById('phone').value || 'Não informado',
                 subject: document.getElementById('subject').value,
                 message: document.getElementById('message').value,
-                timestamp: new Date().toLocaleString('pt-BR'),
-                ip: 'Capturado pelo servidor' // Em produção, isso seria capturado no backend
+                timestamp: new Date().toLocaleString('pt-BR')
             };
             
             // Validate form
@@ -1135,8 +1112,11 @@
             
             try {
                 // Send email using EmailJS
-                // IMPORTANTE: Você precisa configurar sua conta no EmailJS e substituir as constantes acima
-                const response = await emailjs.send(SERVICE_ID, TEMPLATE_ID, formData);
+                const response = await emailjs.send(
+                    EMAILJS_SERVICE_ID,
+                    EMAILJS_TEMPLATE_ID,
+                    formData
+                );
                 
                 if (response.status === 200) {
                     // Success
@@ -1144,22 +1124,13 @@
                     
                     // Reset form
                     contactForm.reset();
-                    
-                    // Log success (em produção, você pode enviar para um sistema de analytics)
-                    console.log('Email enviado com sucesso:', response);
                 } else {
                     throw new Error('Falha no envio do email');
                 }
             } catch (error) {
                 // Error handling
                 console.error('Erro ao enviar email:', error);
-                
-                // Fallback: Mostrar mensagem de sucesso mesmo em desenvolvimento
-                // Em produção, você deve usar o EmailJS configurado corretamente
-                showToast(`Obrigado, ${formData.name}! Em modo de demonstração, simulamos o envio do seu e-mail. Em produção, isso funcionaria com EmailJS.`, 'info', 6000);
-                
-                // Reset form mesmo no modo de demonstração
-                contactForm.reset();
+                showToast('Erro ao enviar mensagem. Tente novamente ou entre em contato diretamente por email.', 'error', 5000);
             } finally {
                 // Reset button state
                 submitBtn.disabled = false;
@@ -1187,12 +1158,12 @@
         // Privacy and Terms links
         document.getElementById('privacyLink').addEventListener('click', (e) => {
             e.preventDefault();
-            showToast('Política de Privacidade: Seus dados estão seguros conosco. Em produção, esta página teria os termos completos.', 'info', 5000);
+            showToast('Política de Privacidade: Seus dados estão seguros conosco.', 'info', 5000);
         });
         
         document.getElementById('termsLink').addEventListener('click', (e) => {
             e.preventDefault();
-            showToast('Termos de Serviço: Em produção, esta página teria os termos e condições completos do serviço.', 'info', 5000);
+            showToast('Termos de Serviço: Em produção, esta página teria os termos completos.', 'info', 5000);
         });
         
         // Initialize everything when page loads
@@ -1201,42 +1172,27 @@
             
             // Check for counters visibility on scroll
             window.addEventListener('scroll', checkCountersVisibility);
-            checkCountersVisibility(); // Check on initial load
+            checkCountersVisibility();
             
             // Show welcome message
             setTimeout(() => {
-                showToast('Bem-vindo ao QuantumTech! Explore nossa tecnologia futurista.', 'info', 4000);
+                showToast('Bem-vindo ao QuantumTech! Formulário de contato 100% funcional.', 'info', 4000);
             }, 1000);
             
-            // Instructions for EmailJS setup
-            console.log(`
-            ============================================
-            CONFIGURAÇÃO DO EMAILJS (ENVIO DE E-MAILS):
-            ============================================
-            
-            1. Crie uma conta gratuita em https://www.emailjs.com
-            
-            2. Adicione um serviço de email (Gmail, Outlook, etc.)
-            
-            3. Crie um template de email com os campos:
-               - name
-               - email  
-               - company
-               - phone
-               - subject
-               - message
-               - timestamp
-               - ip
-            
-            4. Substitua no código:
-               - YOUR_PUBLIC_KEY_HERE pela sua Public Key
-               - YOUR_SERVICE_ID_HERE pelo seu Service ID
-               - YOUR_TEMPLATE_ID_HERE pelo seu Template ID
-            
-            5. Teste o envio de emails!
-            
-            ============================================
-            `);
+            // Check if EmailJS is configured
+            if (EMAILJS_PUBLIC_KEY === "YOUR_PUBLIC_KEY_HERE") {
+                console.warn('⚠️ EMAILJS NÃO CONFIGURADO!');
+                console.log('Siga estes passos:');
+                console.log('1. Vá para https://www.emailjs.com');
+                console.log('2. Crie uma conta gratuita');
+                console.log('3. Obtenha: Public Key, Service ID, Template ID');
+                console.log('4. Substitua as constantes no início do JavaScript');
+                
+                // Show warning toast after 3 seconds
+                setTimeout(() => {
+                    showToast('Configure o EmailJS para enviar emails reais!', 'error', 8000);
+                }, 3000);
+            }
         });
     </script>
 </body>
